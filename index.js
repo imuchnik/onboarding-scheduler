@@ -21,45 +21,45 @@ moment.fn.nextBusinessDay = function() {
   return tomorrow;
 }
 
-function processTasks(tasks, startDate) {
+function processMessages(messages, startDate) {
 
   var day = moment(startDate),
       businessDays = [day.set({hour: 10, minute: 0, second: 0}).format()],
-      scheduledTasks = [],
+      scheduledMessages = [],
       hoursApart = 4;
 
-  tasks.forEach(function saveDate(task) {
+  messages.forEach(function saveDate(message) {
     businessDays.push(day.nextBusinessDay().format());
   });
 
-  // Give every task a sequential date
-  tasks = tasks.map(function (task) {
-    task.time = businessDays[task.day - 1];
-    return task;
+  // Give every message a sequential date
+  messages = messages.map(function (message) {
+    message.time = businessDays[message.day - 1];
+    return message;
   });
 
-  // Group tasks on the same day and spread out their times
-  tasks = _.groupBy(tasks, function(task) {
-    return task.day;
+  // Group messages on the same day and spread out their times
+  messages = _.groupBy(messages, function(message) {
+    return message.day;
   });
-  for (var task in tasks) {
-    if (tasks[task].length > 1) {
-      hoursApart = Math.floor(8 / tasks[task].length);
-      tasks[task] = tasks[task].map(function adjustTime(task, i) {
+  for (var message in messages) {
+    if (messages[message].length > 1) {
+      hoursApart = Math.floor(8 / messages[message].length);
+      messages[message] = messages[message].map(function adjustTime(message, i) {
         var hour = 9 + (hoursApart / 2) + (hoursApart * i);
-        task.time = moment(task.time).hour(hour).format();
-        return task;
+        message.time = moment(message.time).hour(hour).format();
+        return message;
       });
     }
   }
 
   // Flatten the object back into an array
-  for (var task in tasks) {
-    scheduledTasks = scheduledTasks.concat(tasks[task]);
+  for (var message in messages) {
+    scheduledMessages = scheduledMessages.concat(messages[message]);
   }
 
-  return scheduledTasks;
+  return scheduledMessages;
 
 }
 
-module.exports = processTasks;
+module.exports = processMessages;

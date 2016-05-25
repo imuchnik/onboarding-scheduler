@@ -1,6 +1,6 @@
-# onboarding-scheduler [![Build Status](https://secure.travis-ci.org/cfpb/onboarding-scheduler.png?branch=master)](http://travis-ci.org/cfpb/onboarding-scheduler)
+# onboarding-scheduler [![Build Status](https://img.shields.io/travis/cfpb/onboarding-scheduler.svg?maxAge=2592000&style=flat-square)](https://travis-ci.org/cfpb/onboarding-scheduler) [![npm](https://img.shields.io/npm/v/onboarding-scheduler.svg?maxAge=2592000&style=flat-square)](https://www.npmjs.com/package/onboarding-scheduler)
 
-> The best module ever.
+> Small Node module for processing CFPB messaging schedules.
 
 ## Installation
 
@@ -8,17 +8,6 @@ First install [node.js](http://nodejs.org/). Then:
 
 ```sh
 npm install onboarding-scheduler --save
-```
-
-```sh
-npm install onboarding-scheduler --save
-```
-
-## Usage
-
-```javascript
-var onboarding-scheduler = require('onboarding-scheduler');
-onboarding-scheduler.awesome(); // "awesome"
 ```
 
 ## Contributing
