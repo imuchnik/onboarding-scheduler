@@ -1,6 +1,6 @@
 # onboarding-scheduler [![Build Status](https://img.shields.io/travis/cfpb/onboarding-scheduler.svg?maxAge=2592000&style=flat-square)](https://travis-ci.org/cfpb/onboarding-scheduler) [![npm](https://img.shields.io/npm/v/onboarding-scheduler.svg?maxAge=2592000&style=flat-square)](https://www.npmjs.com/package/onboarding-scheduler)
 
-> Small Node module for processing CFPB messaging schedules.
+> Tools for scheduling CFPBot onboarding messages.
 
 ## Installation
 
