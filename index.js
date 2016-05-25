@@ -7,29 +7,7 @@
 'use strict';
 
 var moment = require('moment');
-
-// var input = [
-//   {
-//     title: 'This is a task',
-//     day: 1,
-//     sent: false
-//   },
-//   {
-//     title: 'This is another task',
-//     day: 2,
-//     sent: false
-//   },
-//   {
-//     title: 'This is yet another task',
-//     day: 2,
-//     sent: false
-//   },
-//   {
-//     title: 'Aaaaaand another task!',
-//     day: 3,
-//     sent: false
-//   }
-// ]
+var _ = require('lodash');
 
 moment.fn.isWeekend = function() {
   return this.isoWeekday() >= 6
@@ -46,22 +24,41 @@ moment.fn.nextBusinessDay = function() {
 function processTasks(tasks, startDate) {
 
   var day = moment(startDate),
-      businessDays = [day.format()];
+      businessDays = [day.set({hour: 10, minute: 0, second: 0}).format()],
+      scheduledTasks = [],
+      hoursApart = 4;
 
   tasks.forEach(function saveDate(task) {
     businessDays.push(day.nextBusinessDay().format());
   });
 
-  console.log(businessDays);
-
-  return tasks.map(function (task) {
-    return {
-      title: task.title,
-      sent: task.sent,
-      day: task.day,
-      time: businessDays[task.day - 1]
-    }
+  // Give every task a sequential date
+  tasks = tasks.map(function (task) {
+    task.time = businessDays[task.day - 1];
+    return task;
   });
+
+  // Group tasks on the same day and spread out their times
+  tasks = _.groupBy(tasks, function(task) {
+    return task.day;
+  });
+  for (var task in tasks) {
+    if (tasks[task].length > 1) {
+      hoursApart = Math.floor(8 / tasks[task].length);
+      tasks[task] = tasks[task].map(function adjustTime(task, i) {
+        var hour = 9 + (hoursApart / 2) + (hoursApart * i);
+        task.time = moment(task.time).hour(hour).format();
+        return task;
+      });
+    }
+  }
+
+  // Flatten the object back into an array
+  for (var task in tasks) {
+    scheduledTasks = scheduledTasks.concat(tasks[task]);
+  }
+
+  return scheduledTasks;
 
 }
 
