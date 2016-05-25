@@ -1,0 +1,30 @@
+{
+  "name": "onboarding-scheduler",
+  "version": "0.1.0",
+  "main": "index.js",
+  "description": "The best module ever.",
+  "homepage": "https://github.com/cfpb/onboarding-scheduler",
+  "bugs": "https://github.com/cfpb/onboarding-scheduler/issues",
+  "author": {
+    "name": "Consumer Financial Protection Bureau",
+    "url": "http://consumerfinance.gov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/onboarding-scheduler"
+  },
+  "license": "Public Domain",
+  "keywords": [
+    "onboarding-scheduler",
+    "cfpb"
+  ],
+  "devDependencies": {
+    "nodeunit": "~0.8.6"
+  },
+  "scripts": {
+    "test": "nodeunit test/onboarding-scheduler-tests.js"
+  },
+  "dependencies": {
+    "moment": "^2.13.0"
+  }
+}
