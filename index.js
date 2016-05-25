@@ -44,7 +44,7 @@ function processMessages(messages, startDate) {
   });
   for (var message in messages) {
     if (messages[message].length > 1) {
-      hoursApart = Math.floor(8 / messages[message].length);
+      hoursApart = Math.floor(8 / messages[message].length) || 1;
       messages[message] = messages[message].map(function adjustTime(message, i) {
         var hour = 9 + (hoursApart / 2) + (hoursApart * i);
         message.time = moment(message.time).hour(hour).format();
