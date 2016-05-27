@@ -23,7 +23,7 @@ moment.fn.nextBusinessDay = function() {
 
 function processMessages(messages, startDate) {
 
-  var day = moment(startDate),
+  var day = moment(startDate).utcOffset("-04:00"),
       businessDays = [day.set({hour: 10, minute: 0, second: 0}).format()],
       scheduledMessages = [],
       hoursApart = 4;
@@ -47,7 +47,7 @@ function processMessages(messages, startDate) {
       hoursApart = Math.floor(8 / messages[message].length) || 1;
       messages[message] = messages[message].map(function adjustTime(message, i) {
         var hour = 9 + (hoursApart / 2) + (hoursApart * i);
-        message.time = moment(message.time).hour(hour).format();
+        message.time = moment(message.time).utcOffset("-04:00").hour(hour).format();
         return message;
       });
     }
