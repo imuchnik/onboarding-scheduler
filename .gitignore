@@ -52,3 +52,6 @@ src/vendor/
 ################
 test/coverage
 test/junit
+
+.idea/
+.iml

@@ -43,7 +43,7 @@ function processMessages(messages, startDate) {
     return message.day;
   });
   for (var message in messages) {
-    if (messages[message].length > 1) {
+    if (messages[message].length > 0) {
       hoursApart = Math.floor(8 / messages[message].length) || 1;
       messages[message] = messages[message].map(function adjustTime(message, i) {
         var hour = 9 + (hoursApart / 2) + (hoursApart * i);
