@@ -1,6 +1,6 @@
 {
   "name": "onboarding-scheduler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "description": "The best module ever.",
   "homepage": "https://github.com/cfpb/onboarding-scheduler",
